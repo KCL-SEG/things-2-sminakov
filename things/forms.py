@@ -1,8 +1,11 @@
 from django import forms
+from .models import Thing
 """Forms of the project."""
 
 # Create your forms here.
-class ThingForm(forms.Form):
-    name = forms.CharField(label='name')
-    description = forms.CharField(label='description', widget=forms.Textarea)
-    quatity = forms.CharField(label='quantity', widget=forms.NumberInput)
+class ThingForm(forms.ModelForm):
+    class Meta:
+        model = Thing
+        fields = ['name', 'description', 'quantity']
+        widgets = {'description':forms.Textarea, 'quantity':forms.NumberInput}
+
